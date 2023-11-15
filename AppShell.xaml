@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="yummyCook.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:yummyCook.Views.Main"
+    Shell.FlyoutBehavior="Disabled"
+    Shell.NavBarIsVisible="False">
+    
+
+    <TabBar>
+        <ShellContent Title="Domů"
+                      ContentTemplate="{DataTemplate local:HomePage}"
+                      Route="HomePage"
+                      Icon="Icons/house.svg" />
+        <ShellContent Title="Ingredience"
+                      ContentTemplate="{DataTemplate local:IngredientsPage}"
+                      Route="IngredientsPage"
+                      Icon="Icons/fridge.svg" />
+        <ShellContent Title="Recepty"
+                      ContentTemplate="{DataTemplate local:RecipesPage}"
+                      Route="RecipesPage" 
+                      Icon="Icons/book.svg" />
+        <ShellContent Title="Více"
+                      ContentTemplate="{DataTemplate local:MorePage}"
+                      Route="MorePage"
+                      Icon="Icons/menu.svg" />
+    </TabBar>
+</Shell>

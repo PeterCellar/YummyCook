@@ -1,0 +1,147 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net6.0-maccatalyst;net6.0-ios;net6.0-android</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net6.0-windows10.0.19041.0</TargetFrameworks>
+		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
+		<!-- <TargetFrameworks>$(TargetFrameworks);net6.0-tizen</TargetFrameworks> -->
+		<OutputType>Exe</OutputType>
+		<RootNamespace>yummyCook</RootNamespace>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+
+		<!-- Display name -->
+		<ApplicationTitle>Yummy Cook</ApplicationTitle>
+
+		<!-- App Identifier -->
+		<ApplicationId>com.ituFit2022.yummycook</ApplicationId>
+		<ApplicationIdGuid>520c103e-d8f3-49f6-9d42-416c8fc462e8</ApplicationIdGuid>
+
+		<!-- Versions -->
+		<ApplicationDisplayVersion>0.1</ApplicationDisplayVersion>
+		<ApplicationVersion>1</ApplicationVersion>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">26.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+		<Nullable>warnings</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- App Icon -->
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#FBAA13" />
+
+		<!-- Splash Screen -->
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#FBAA13" BaseSize="128,128" />
+
+		<!-- Images -->
+		<MauiImage Include="Resources\Images\*" />
+		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
+
+		<!-- Custom Fonts -->
+		<MauiFont Include="Resources\Fonts\*" />
+
+		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Resources\Images\house.png" />
+	  <None Remove="Resources\Images\Icons\book.svg" />
+	  <None Remove="Resources\Images\Icons\bookB.svg" />
+	  <None Remove="Resources\Images\Icons\fridge.svg" />
+	  <None Remove="Resources\Images\Icons\fridgeB.svg" />
+	  <None Remove="Resources\Images\Icons\house.svg" />
+	  <None Remove="Resources\Images\Icons\houseB.svg" />
+	  <None Remove="Resources\Images\Icons\menu.svg" />
+	  <None Remove="Resources\Images\imageImage.png" />
+	  <None Remove="Resources\Images\pizza.jpg" />
+	  <None Remove="Resources\Images\themes\dark.png" />
+	  <None Remove="Resources\Images\themes\darkA.png" />
+	  <None Remove="Resources\Images\themes\light.png" />
+	  <None Remove="Resources\Images\themes\lightA.png" />
+	  <None Remove="Resources\Images\themes\system.png" />
+	  <None Remove="Resources\Images\themes\systemA.png" />
+	  <None Remove="Resources\Raw\loaderDark.json" />
+	  <None Remove="Resources\Raw\loaderLight.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiImage Include="Resources\Images\Icons\book.svg" />
+	  <MauiImage Include="Resources\Images\Icons\bookB.svg" />
+	  <MauiImage Include="Resources\Images\Icons\fridge.svg" />
+	  <MauiImage Include="Resources\Images\Icons\fridgeB.svg" />
+	  <MauiImage Include="Resources\Images\Icons\house.svg" />
+	  <MauiImage Include="Resources\Images\Icons\houseB.svg" />
+	  <MauiImage Include="Resources\Images\Icons\menu.svg" />
+	  <MauiImage Include="Resources\Images\themes\dark.png" />
+	  <MauiImage Include="Resources\Images\themes\darkA.png" />
+	  <MauiImage Include="Resources\Images\themes\light.png" />
+	  <MauiImage Include="Resources\Images\themes\lightA.png" />
+	  <MauiImage Include="Resources\Images\themes\system.png" />
+	  <MauiImage Include="Resources\Images\themes\systemA.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="banditoth.MAUI.Multilanguage" Version="1.0.4" />
+	  <PackageReference Include="CommunityToolkit.Maui" Version="2.0.0" />
+	  <PackageReference Include="FirebaseDatabase.net" Version="4.1.0" />
+	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0-preview1" />
+	  <PackageReference Include="FirebaseStorage.net" Version="1.0.3" />
+	  <PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0-preview.61" />
+	  <PackageReference Include="System.ObjectModel" Version="4.3.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Resources\Translations\AppTranslations.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>AppTranslations.resx</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Main\ProfilPage.xaml.cs">
+	    <DependentUpon>ProfilPage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Update="Resources\Translations\AppTranslations.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>AppTranslations.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="Resources\Translations\AppTranslationsEN.resx">
+	    <Generator></Generator>
+	  </EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Views\Main\HomePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Main\IngredientsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Main\ProfilPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Main\RecipesPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Others\IngrediencePopUp.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Others\RecipeCreatePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Others\RecipeDetailPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Others\ShoppingListPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
+</Project>

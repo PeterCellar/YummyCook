@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="yummyCook.Views.Others.ShoppingListPage"
+             xmlns:model="clr-namespace:yummyCook.Firebase"
+             xmlns:viewmodel="clr-namespace:yummyCook.ViewModels"
+             x:DataType="viewmodel:IngredientsViewModel"
+             xmlns:local="clr-namespace:yummyCook.IngredientTriggers"
+             Shell.PresentationMode="Animated"
+             Shell.TabBarIsVisible="False"
+             Padding="0"
+             xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI">
+
+    <Grid RowDefinitions="auto, auto, *, auto"
+          TranslationY="-10"
+          RowSpacing="10">
+        <Frame Grid.Row="0"
+               BackgroundColor="{AppThemeBinding Light={StaticResource Secondary}, Dark={StaticResource DarkSecondary}}"
+               HeightRequest="75">
+            <StackLayout Orientation="Horizontal">
+                <Button WidthRequest="40"
+                        HeightRequest="40"
+                        Margin="20, 20, 10, 10"
+                        BackgroundColor="Orange"
+                        Text="➜"
+                        Rotation="180"
+                        FontSize="20"
+                        Padding="0, 0, 0, 3.5"
+                        Command="{Binding NavigateBackCommand}" />
+                <Label StyleClass="PageH2"
+                        Text="Nákupní seznam"
+                        VerticalOptions="Center"
+                        Margin="10, 20, 10, 10" />
+            </StackLayout>
+        </Frame>
+
+        <Frame  Margin="15, 0"
+                Grid.Row="1"
+                BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray600}}"
+                IsVisible="{Binding IsNotBusy}">
+            <StackLayout>
+                <StackLayout Orientation="Horizontal"
+                                Margin="10">
+                    <Label Text="Přidat položku"
+                            VerticalTextAlignment="Center"
+                            HorizontalOptions="StartAndExpand"
+                            FontSize="16"
+                            FontAttributes="Bold" />
+                    <Button Text="ᐯ"
+                            HorizontalOptions="End"
+                            Command="{Binding ExpandSearchCommand}"
+                            VerticalOptions="Center">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button"
+                                            Binding="{Binding IsNotCollapsed}"
+                                            Value="true">
+                                <Setter Property="Text"
+                                        Value="ᐱ" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                </StackLayout>
+                <StackLayout IsVisible="{Binding IsNotCollapsed}">
+                    <SearchBar x:Name="IngredienceSearchBar"
+                               SearchCommand="{Binding GetSearchCommand}"
+                               SearchCommandParameter="{Binding Text, Source={x:Reference IngredienceSearchBar}}"
+                               BackgroundColor="Transparent"
+                               CancelButtonColor="{StaticResource Primary}"
+                               Placeholder="Vyhledat ingredienci"
+                               FontSize="17" />
+
+                    <FlexLayout Grid.Row="1"
+                                BindableLayout.ItemsSource="{Binding SearchResults}"
+                                JustifyContent="Start"
+                                Wrap="Wrap"
+                                AlignItems="Start"
+                                Margin="10">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate x:DataType="model:IngredientModel">
+                                <Button Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:IngredientsViewModel}}, Path=AddToShoppingListCommand}"
+                                        CommandParameter="{Binding .}"
+                                        Text="{Binding Name}"
+                                        Margin="2"
+                                        FlexLayout.Basis="Auto"
+                                        BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray600}}"
+                                        TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
+                                        BorderColor="{StaticResource Primary}"
+                                        BorderWidth="2" />
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </FlexLayout>
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+        <Frame Margin="15, 0"
+               Grid.Row="2"
+               BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray600}}"
+               IsVisible="{Binding IsNotBusy}"
+               MaximumHeightRequest="650">
+            <ScrollView>
+                <StackLayout>
+                    <ListView ItemsSource="{Binding ShoppingListData}"
+                              SelectionMode="None"
+                              HasUnevenRows="True"
+                              VerticalOptions="Start"
+                              IsVisible="{Binding IsNotEmpty}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="model:IngredientModel">
+                                <ViewCell>
+                                    <Grid ColumnSpacing="10">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="1.5*" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <BoxView Grid.Row="0"
+                                                 HeightRequest="10"
+                                                 WidthRequest="10"
+                                                 Color="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray500}}"
+                                                 CornerRadius="10"
+                                                 Margin="5" />
+                                        <BoxView Grid.Row="1"
+                                                 HeightRequest="10"
+                                                 WidthRequest="10"
+                                                 Color="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray500}}"
+                                                 CornerRadius="10"
+                                                 Margin="5" />
+                                        <BoxView Grid.Row="2"
+                                                 HeightRequest="10"
+                                                 WidthRequest="10"
+                                                 Color="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray500}}"
+                                                 CornerRadius="10"
+                                                 Margin="5" />
+                                        <Label Grid.RowSpan="3"
+                                               Grid.Column="1"
+                                               Text="{Binding Name}"
+                                               LineBreakMode="NoWrap"
+                                               FontSize="20"
+                                               VerticalOptions="Center" />
+                                        <Label Grid.RowSpan="3"
+                                               Grid.Column="2"
+                                               FontSize="16"
+                                               Text="{Binding ToBuy}"
+                                               VerticalOptions="Center"
+                                               BackgroundColor="#4c4c4c"
+                                               Padding="5">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:IngredientsViewModel}}, Path=ChangeToBuyCommand }"
+                                                                      CommandParameter="{Binding .}" />
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                        <Button Grid.RowSpan="3"
+                                                Grid.Column="3"
+                                                Text="🛒"
+                                                Padding="4.3, 3"
+                                                FontSize="16"
+                                                VerticalOptions="Center"
+                                                BackgroundColor="{StaticResource Primary}"
+                                                BorderColor="{StaticResource Primary}"
+                                                BorderWidth="2"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:IngredientsViewModel}}, Path=SetInCartCommand}"
+                                                CommandParameter="{Binding .}">
+
+                                            <Button.Triggers>
+                                                <DataTrigger TargetType="Button"
+                                                             Binding="{Binding InCart}"
+                                                             Value="False">
+                                                    <Setter Property="BackgroundColor"
+                                                            Value="Transparent" />
+                                                    <Setter Property="BorderWidth"
+                                                            Value="1" />
+                                                </DataTrigger>
+
+                                                <EventTrigger Event="Clicked">
+                                                    <local:ChangeStyle />
+                                                </EventTrigger>
+                                            </Button.Triggers>
+
+                                        </Button>
+                                        <Button Grid.RowSpan="3"
+                                                Grid.Column="4"
+                                                Text="Odebrat"
+                                                Margin="0, 0, 15, 0"
+                                                Padding="5"
+                                                VerticalOptions="Center"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:IngredientsViewModel}}, Path=RemoveCommand}"
+                                                CommandParameter="{Binding .}" />
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <StackLayout Padding="10"
+                                 Orientation="Horizontal"
+                                 Spacing="15"
+                                 HorizontalOptions="Center">
+                        <Label Text="Zbývá koupit:"
+                               FontSize="18"
+                               VerticalOptions="Center"
+                               IsVisible="{Binding IsNotEmpty}" />
+                        <Label Text="{Binding shoppingListCount}"
+                               FontSize="25"
+                               StyleClass="PageH1"
+                               IsVisible="{Binding IsNotEmpty}" />
+                        <Label Text="Nákupní seznam je prázdný"
+                               FontSize="18"
+                               IsVisible="{Binding IsEmpty}" />
+                    </StackLayout>
+
+                </StackLayout>
+            </ScrollView>
+        </Frame>
+
+        <skia:SKLottieView Source="{AppThemeBinding Light=loaderLight.json, Dark=loaderDark.json}"
+                           RepeatCount="-1"
+                           HeightRequest="200"
+                           WidthRequest="200"
+                           HorizontalOptions="Center"
+                           VerticalOptions="CenterAndExpand"
+                           IsVisible="{Binding IsBusy}" />
+
+        <StackLayout Orientation="Horizontal"
+                     VerticalOptions="End"
+                     HorizontalOptions="Center"
+                     Spacing="20"
+                     Grid.Row="3"
+                     IsVisible="{Binding IsNotBusy}">
+            <Button Style="{StaticResource NotHaveButton}"
+                    Text="Odstranit seznam"
+                    Command="{Binding ClearShoppingListCommand}" />
+        </StackLayout>
+    </Grid>
+</ContentPage>
