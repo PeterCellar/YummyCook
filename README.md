@@ -1,51 +1,118 @@
-# Yummy Cook
+# YummyCook
 
-Aplikácia doporučujúca recepty podľa dostupných ingrediencií
+Mobile application created with .NET MAUI technology.
 
-## Struktura projektu
+Application has been made as an university project at FIT VUT by me and another two colleagues.
 
-### Firebase
-- Obsahuje triedy pre komunikáciu s Firebase a modelmi pro jednotlivé typy objektov.
+---
 
-### folder: Models
+## Supported OS
+	
+	- Android
+	- IOS
 
+---
 
-### folder: ViewModels
-- Obsahuje modely pohľadow pre jednotlivé stránky.
+## Data
 
-### folder: Views
-- Obsahuje views v�ech str�nek pou��van�ch v aplikaci 
-	- Main obsahuje views str�nek, kter� vyu��v� Shell navigace v tab bar
-	- Others obsahuje v�echny ostatn� views str�nek aplikace
+### Firebase Recipe Model
+	
+	- Name
+	- Description
+	- Rating
+	- Preparation time
+	- Type
+	- Cuisine 
+	- Ingredients
+	- Steps
+	- Tools
+	- Use diets
+	- Allergens
+	- Photo
+	- Public
 
-### folder: Platforms
-- Specifick� k�d pro dan� platformy
+### Recipe Model
+	
+	- Name 
+	- Description
+	- RecipeProcedure
+	- Rating
+	- CookingTime
+	- FoodType
+	- CuisineType
+	- KitchenAppliances
+	- Diets
+	- Allergens
+	- SelectedIngredients
+	- Pictures
+	- Favorite
 
-### folder: Resources
-- obsahuje v�echny soubory pou�it� v app (fotky, splashScreen, STYLY, fonty, ikony)
-	- Styles
-		- Colors - ulo�en� hex. k�d� barev do promenn�ch 
-		- Styles - styly v�ech stavebn�ch prvk� app (Buttons, Pickers, Frames, Labels...)
-		- Definujeme si v�e na jednom m�st�, co� u�et�� dost ��dk� v XAMLu
+### Profil
+	
+	- Name
+	- Image
+	- Diets
+	- Alergy
+	- Tools
+	- Language
 
-### AppShell
-- Soubor slou�� pro implementaci navigace
+### Kitchen
+	
+	- Kitchen
 
-### MauiProgram
-- Inicializace bal��k�
+### Ingredient
+	
+	- Name 
+	- Category
+	- Fat
+	- Sugar
+	- Proteins
+	- Calories
+	- Have
+	- Buy
+	- InCart
+	- ToBuy
+	- InNewRecipe
+
+---
+
+## Funcionality
+
+Application downloads json data from Firebase database and displays them to user.
+
+User can browse various recipes, pick favorite ones and create new, create his own shopping list, select a theme color or change 
+application language.  
+
+### Recipe
+
+Get existing recipe or create new one. Filter recipes by name, preparation time or other filters. 
+
+Pick your favorite recipe or calculate nutritional values.
+
+### Ingredient
+
+Mark ingredients you already have in the kitchen. Add missing ingredients to a shopping list or remove bought ones.
+
+### Profile
+
+Add your personal diets, allergies, kitchen tools or update steps in your recipe. 
+
+Set your profile picture or pick your favorite theme color.
+
+---
 
 ## Debugging
-- Emul�tor nebo fyzick� za��zen�
-- USB nebo Wifi
+- Emulator or physical device
+- USB or Wi-Fi
 
-### Aktivace bezdr�tov�ho debuggingu
-Nastaven� -> v�voja�sk� mo�nosti (nutn� altivovat: Informace o softwaru -> 7x kliknou na ��slo sestaven�) -> Lad�n�
-- bezdr�tov� lad�n�: (telefon) Android >= 11, (VS) Android SDK >= 30
-	- ve VS otev��t Android Adb Command Prompt
+### Activation of wireless debugging
+Settings -> developer options (must be activated: Software information -> 7x click on serial number) -> Tuning
+- wireless tuning: (mobile) Android >= 11, (VS) Android SDK >= 30
+	- open up Android Adb Command Prompt in Visual Studio
 ```bash
-adb pair [IP:port (�daje v telefonu)] 
+adb pair [IP:port (Data in a mobile)] 
 
 Enter pairing code: 
 
-adb connect [IP telefonu]
+adb connect [Mobile IP]
 ```
