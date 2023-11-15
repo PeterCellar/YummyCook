@@ -31,7 +31,8 @@ namespace yummyCook.Firebase
                     var ingredient = JoinedIngredients.Where(x => x.Name.Equals(ingredientName)).FirstOrDefault();
                     ShoppingListData.Add(ingredient);
                 }
-            }catch(Exception) 
+            }
+            catch (Exception)
             {
                 return;
             }

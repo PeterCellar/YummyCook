@@ -20,7 +20,7 @@ namespace yummyCook.ViewModels
         public ICommand ShowRecipeDescriptionCommand => new Command(ShowRecipeDescriptionDetail);
 
         #region Constructor
-        public RecipeDetailViewModel() 
+        public RecipeDetailViewModel()
         {
             recipeModel = DetailRecipe;
             ShowRecipeNutritions = false;
@@ -146,9 +146,9 @@ namespace yummyCook.ViewModels
             float sugar = 0;
             try
             {
-                foreach(var recipeIngredient in recipeIngredients)
+                foreach (var recipeIngredient in recipeIngredients)
                 {
-                    foreach(var ingredient in JoinedIngredients)
+                    foreach (var ingredient in JoinedIngredients)
                     {
                         if (ingredient.Name.Equals(recipeIngredient.Name))
                         {
@@ -164,7 +164,7 @@ namespace yummyCook.ViewModels
                 Proteins = proteins.ToString() + " g";
                 Sugar = sugar.ToString() + " g";
             }
-            catch(Exception)
+            catch (Exception)
             {
                 Calories = "0 kcal";
                 Fat = "0 g";

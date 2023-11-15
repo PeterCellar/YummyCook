@@ -187,8 +187,8 @@ namespace yummyCook.ViewModels
         {
             ObservableCollection<IngredientModel> filtered = new ObservableCollection<IngredientModel>();
 
-            foreach (var item in JoinedIngredients.Where(x => x.Name.ToLower().Contains(querry.ToLower()) || 
-                                                              x.Category.ToLower().Contains(querry.ToLower()))) 
+            foreach (var item in JoinedIngredients.Where(x => x.Name.ToLower().Contains(querry.ToLower()) ||
+                                                              x.Category.ToLower().Contains(querry.ToLower())))
             {
                 if (item.Buy == false)
                     filtered.Add(item);

@@ -50,7 +50,7 @@ namespace yummyCook.ViewModels
 
         /* Dáta pre vytváranie receptu */
 
-        
+
         /// Postup
         ObservableCollection<Steps> _procedure;
         public ObservableCollection<Steps> Procedure
@@ -179,7 +179,7 @@ namespace yummyCook.ViewModels
         /* ******************************************* VIEWMODEL ****************************************** */
         /* ************************************************************************************************ */
 
-        public ProfilViewModel() 
+        public ProfilViewModel()
         {
             Fruits = FruitsData;
             Categories.Add(Fruits);
@@ -330,7 +330,7 @@ namespace yummyCook.ViewModels
         {
             string result = await App.Current!.MainPage!.DisplayPromptAsync("Zmena mena", "Nové meno (maximálne 10 znakov):");
 
-            if (result == null) 
+            if (result == null)
             {
                 return;
             }
@@ -406,7 +406,7 @@ namespace yummyCook.ViewModels
         {
             Ingredients newIng = new Ingredients { Name = Ing.Name, Category = Ing.Category };
 
-            foreach(var item in EditedRecipeData.Ingredients)
+            foreach (var item in EditedRecipeData.Ingredients)
             {
                 if (item.Name == newIng.Name)
                 {
@@ -428,7 +428,7 @@ namespace yummyCook.ViewModels
             NewRecipeIngredience.Remove(NewRecipeIngredience.Where(x => x.Name == Ing.Name).FirstOrDefault());
             foreach (var list in Categories)
             {
-                foreach(var item in list)
+                foreach (var item in list)
                 {
                     if (item.Name == Ing.Name)
                     {
@@ -534,9 +534,9 @@ namespace yummyCook.ViewModels
                 {
                     if (LocalRecipes.Where(x => x.Name == savedName).FirstOrDefault()!.Public)
                     {
-                        await firebaseHelper.UpdateGlobalRecipe(EditedRecipeData ,savedName);
+                        await firebaseHelper.UpdateGlobalRecipe(EditedRecipeData, savedName);
                     }
-                    await firebaseHelper.UpdateLocalRecipe(EditedRecipeData ,savedName);
+                    await firebaseHelper.UpdateLocalRecipe(EditedRecipeData, savedName);
                 }
                 else
                 {
@@ -579,7 +579,7 @@ namespace yummyCook.ViewModels
             foreach (var item in Profil.Diets)
             {
                 item.InNewRecipe = false;
-            } 
+            }
             foreach (var item in Profil.Diets)
             {
                 item.InNewRecipe = false;
@@ -600,7 +600,7 @@ namespace yummyCook.ViewModels
             savedName = recipe.Name;
             EditedRecipeData.Photo = recipe.Photo;
             Photo = recipe.Photo;
-            EditedRecipeData.Description= recipe.Description;
+            EditedRecipeData.Description = recipe.Description;
             Description = recipe.Description;
             EditedRecipeData.Steps = recipe.Steps;
             foreach (var step in recipe.Steps)

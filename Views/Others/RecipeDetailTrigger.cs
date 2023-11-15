@@ -14,9 +14,6 @@ namespace yummyCook.RecipeDetailTriggers
             var item = btn.Parent;
 
             List<RecipeModel> list = new List<RecipeModel>();
-
-            //IEnumerable<string> strings = from a in list.Where(x => x.pa)
-
         }
     }
 }

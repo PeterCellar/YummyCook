@@ -57,9 +57,9 @@ namespace yummyCook.ViewModels
         bool dark;
         static ObservableCollection<IngredientModel> shoppingListData = new();
 
-        public ObservableCollection<IngredientModel> ShoppingListData 
-        { 
-            get 
+        public ObservableCollection<IngredientModel> ShoppingListData
+        {
+            get
             {
                 return shoppingListData;
             }
@@ -72,8 +72,8 @@ namespace yummyCook.ViewModels
         static ObservableCollection<IngredientModel> joinedIngredients = new();
 
         public ObservableCollection<IngredientModel> JoinedIngredients
-        { 
-            get 
+        {
+            get
             {
                 return joinedIngredients;
             }
@@ -86,8 +86,8 @@ namespace yummyCook.ViewModels
         static ObservableCollection<IngredientModel> searchResults = new();
 
         public ObservableCollection<IngredientModel> SearchResults
-        { 
-            get 
+        {
+            get
             {
                 return searchResults;
             }
@@ -98,16 +98,17 @@ namespace yummyCook.ViewModels
             }
         }
 
-        public bool LightTheme { 
-            get 
+        public bool LightTheme
+        {
+            get
             {
                 return light;
-            } 
-            set 
-            { 
+            }
+            set
+            {
                 light = value;
-                OnPropertyChanged(); 
-            } 
+                OnPropertyChanged();
+            }
         }
         public bool DarkTheme
         {
@@ -136,7 +137,7 @@ namespace yummyCook.ViewModels
 
         public string Greeting { get; set; }
 
-        public ObservableCollection<IngredientModel> SavedIngredients {  get; set; }
+        public ObservableCollection<IngredientModel> SavedIngredients { get; set; }
 
         public static ProfilModel ProfilData { get; } = new();
         public static ObservableCollection<KitchenModel> KitchenTypeData { get; } = new();
@@ -145,9 +146,9 @@ namespace yummyCook.ViewModels
 
         public int shoppingListCount
         {
-            get 
+            get
             {
-                return count; 
+                return count;
             }
             set
             {
@@ -162,7 +163,7 @@ namespace yummyCook.ViewModels
 
             set
             {
-                if (isBusy == value) 
+                if (isBusy == value)
                     return;
 
                 isBusy = value;
@@ -204,7 +205,7 @@ namespace yummyCook.ViewModels
                 if (ratingMenuExpanded == value)
                     return;
 
-                ratingMenuExpanded = value; 
+                ratingMenuExpanded = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(RatingMenuCollapsed));
             }
@@ -241,7 +242,7 @@ namespace yummyCook.ViewModels
 
             set
             {
-                if (showRecipeDescription == value) 
+                if (showRecipeDescription == value)
                     return;
 
                 showRecipeDescription = value;
@@ -465,7 +466,7 @@ namespace yummyCook.ViewModels
                 SaucesData = new ObservableCollection<IngredientModel>(SaucesData.OrderBy(i => i.Name));
 
                 JoinedIngredients = new ObservableCollection<IngredientModel>(FruitsData.Concat(VegetablesData.Concat(MeatData.Concat(FishData.Concat(PastaData.Concat(PastryData.Concat(DairyproductsData.Concat(MushroomsData.Concat(OilsData.Concat(NutsData.Concat(SpicesData.Concat(SweetenersData))))))))))));
-                
+
                 ShoppingListData.Clear();
                 foreach (var item in JoinedIngredients.Where(x => x.Buy.Equals(true)))
                 {

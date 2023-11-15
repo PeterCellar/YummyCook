@@ -34,7 +34,8 @@ namespace yummyCook.Models
                         }
                         break;
                     case "dairyproducts":
-                        if (!alergies.Contains(listOfAlergies.Where(x => x.Alergy == "Mléčné produkty").FirstOrDefault())){
+                        if (!alergies.Contains(listOfAlergies.Where(x => x.Alergy == "Mléčné produkty").FirstOrDefault()))
+                        {
                             alergies.Add(listOfAlergies.Where(x => x.Alergy == "Mléčné produkty").FirstOrDefault());
                         }
                         break;
@@ -78,7 +79,7 @@ namespace yummyCook.Models
                         }
                         break;
                     case "vegetables":
-                        if (!alergies.Contains(listOfAlergies.Where(x => x.Alergy == "Celer").FirstOrDefault()) && ing.Name == "Celer") 
+                        if (!alergies.Contains(listOfAlergies.Where(x => x.Alergy == "Celer").FirstOrDefault()) && ing.Name == "Celer")
                         {
                             alergies.Add(listOfAlergies.Where(x => x.Alergy == "Celer").FirstOrDefault());
                         }

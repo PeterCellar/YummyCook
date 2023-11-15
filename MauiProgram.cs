@@ -11,18 +11,18 @@ namespace yummyCook;
 
 public static class MauiProgram
 {
-	public static MauiApp CreateMauiApp()
-	{
-		var builder = MauiApp.CreateBuilder();
-		builder
-			.UseMauiApp<App>()
+    public static MauiApp CreateMauiApp()
+    {
+        var builder = MauiApp.CreateBuilder();
+        builder
+            .UseMauiApp<App>()
             .UseMauiCommunityToolkit()
             .UseSkiaSharp()
 
             .ConfigureFonts(fonts =>
-			{
-				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+            {
+                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 
                 //nahrani Font Awesosome
                 fonts.AddFont("FontAwesome6-Regular.otf", "FontRegular");
@@ -65,5 +65,5 @@ public static class MauiProgram
         builder.Services.AddTransient<RecipeCreatePage>();
 
         return builder.Build();
-	}
+    }
 }

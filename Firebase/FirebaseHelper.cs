@@ -102,7 +102,7 @@ namespace yummyCook.Firebase
                 Rating = newRecipe.Rating,
                 Time = newRecipe.Time,
                 Type = newRecipe.Type,
-                Kitchen= newRecipe.Kitchen,
+                Kitchen = newRecipe.Kitchen,
                 Favourite = newRecipe.Favourite,
                 Ingredients = newRecipe.Ingredients,
                 Steps = newRecipe.Steps,
@@ -269,13 +269,14 @@ namespace yummyCook.Firebase
                 await firebase.Child("Ingredients")
                     .Child(category)
                     .Child(ingItem!.Key)
-                    .PutAsync(new IngredientModel { 
-                        Name = ingItem.Object.Name, 
-                        Category = ingItem.Object.Category, 
-                        Fat = ingItem.Object.Fat, 
+                    .PutAsync(new IngredientModel
+                    {
+                        Name = ingItem.Object.Name,
+                        Category = ingItem.Object.Category,
+                        Fat = ingItem.Object.Fat,
                         Sugar = ingItem.Object.Sugar,
-                        Proteins = ingItem.Object.Proteins, 
-                        Calories = ingItem.Object.Calories, 
+                        Proteins = ingItem.Object.Proteins,
+                        Calories = ingItem.Object.Calories,
                         Have = value,
                         Buy = ingItem.Object.Buy,
                         InCart = ingItem.Object.InCart,
@@ -287,14 +288,15 @@ namespace yummyCook.Firebase
                 await firebase.Child("Ingredients")
                     .Child(category)
                     .Child(ingItem!.Key)
-                    .PutAsync(new IngredientModel { 
-                        Name = ingItem.Object.Name, 
-                        Category = ingItem.Object.Category, 
-                        Fat = ingItem.Object.Fat, 
-                        Sugar = ingItem.Object.Sugar, 
-                        Proteins = ingItem.Object.Proteins, 
-                        Calories = ingItem.Object.Calories, 
-                        Have = ingItem.Object.Have, 
+                    .PutAsync(new IngredientModel
+                    {
+                        Name = ingItem.Object.Name,
+                        Category = ingItem.Object.Category,
+                        Fat = ingItem.Object.Fat,
+                        Sugar = ingItem.Object.Sugar,
+                        Proteins = ingItem.Object.Proteins,
+                        Calories = ingItem.Object.Calories,
+                        Have = ingItem.Object.Have,
                         Buy = value,
                         InCart = false,
                         ToBuy = ingItem.Object.ToBuy

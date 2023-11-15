@@ -52,7 +52,7 @@ namespace yummyCook.ViewModels
             /// Načtení uloženého tématu aplikace
             switch (Preferences.Default.Get("AppTheme", 0))
             {
-                case 0: 
+                case 0:
                     Application.Current!.UserAppTheme = AppTheme.Unspecified; break;
 
                 case 1:
@@ -97,7 +97,7 @@ namespace yummyCook.ViewModels
                     topDone = false;
                     Task.Run(async () => { await GetRecipesAsync(); }).Wait();
                 }
-                else if(searchText.Length > 4)
+                else if (searchText.Length > 4)
                 {
                     Task.Run(async () => { await GetRecipeBySearchAsync(searchText); }).Wait();
                 }
@@ -196,7 +196,7 @@ namespace yummyCook.ViewModels
             }
             else
             {
-                 await GetRecipesAsync();
+                await GetRecipesAsync();
             }
 
             IsBusy = false;
@@ -382,9 +382,9 @@ namespace yummyCook.ViewModels
 
             Recipes.Clear();
 
-            foreach(var recipe in recipes)
+            foreach (var recipe in recipes)
             {
-                if(recipe.Rating == topRating)
+                if (recipe.Rating == topRating)
                 {
                     Recipes.Add(recipe);
                 }
@@ -407,9 +407,9 @@ namespace yummyCook.ViewModels
 
             Recipes.Clear();
 
-            foreach(var recipe in recipes)
+            foreach (var recipe in recipes)
             {
-                if(recipe.Rating >= fourStar)
+                if (recipe.Rating >= fourStar)
                 {
                     Recipes.Add(recipe);
                 }
@@ -456,7 +456,7 @@ namespace yummyCook.ViewModels
 
             Recipes.Clear();
 
-            foreach(var recipe in recipes)
+            foreach (var recipe in recipes)
             {
                 if (recipe.Favourite)
                     Recipes.Add(recipe);
